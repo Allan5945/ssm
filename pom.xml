@@ -73,10 +73,10 @@
         <war-name.version>ssm</war-name.version>
         <jdk.version>1.7</jdk.version>
 
-        <tomcat-port.version>3333</tomcat-port.version>
+        <tomcat-port.version>8082</tomcat-port.version>
         <tomcat-uri-encoding.version>UTF-8</tomcat-uri-encoding.version>
         <tomcat-path.version>/</tomcat-path.version>
-        <jetty-port.version>3333</jetty-port.version>
+        <jetty-port.version>8082</jetty-port.version>
         <jetty-path.version>/</jetty-path.version>
         <!--其他变量 end-->
 
@@ -375,22 +375,22 @@
             <!-- mybatis代码生成插件 使用方式： 修改src/main/resources/generatorConfig.xml配置文件
 				命令行：mvn mybatis-generator:generate 配置文章： http://generator.sturgeon.mopaas.com/index.html -->
 
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>${mybatis-generator-maven-plugin}</version>
-                <!--<dependencies>-->
-                    <!--<dependency>-->
-                        <!--<groupId>com.mysql</groupId>-->
-                        <!--<artifactId>ojdbc14</artifactId>-->
-                        <!--<version>10.2.0.2.0</version>-->
-                    <!--</dependency>-->
-                <!--</dependencies>-->
-                <configuration>
-                    <verbose>true</verbose>
-                    <overwrite>true</overwrite>
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.mybatis.generator</groupId>-->
+                <!--<artifactId>mybatis-generator-maven-plugin</artifactId>-->
+                <!--<version>${mybatis-generator-maven-plugin}</version>-->
+                <!--&lt;!&ndash;<dependencies>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<groupId>com.mysql</groupId>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<artifactId>ojdbc14</artifactId>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<version>10.2.0.2.0</version>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
+                <!--&lt;!&ndash;</dependencies>&ndash;&gt;-->
+                <!--<configuration>-->
+                    <!--<verbose>true</verbose>-->
+                    <!--<overwrite>true</overwrite>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
             <!-- war 打包插件, 设定war包名称不带版本号 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

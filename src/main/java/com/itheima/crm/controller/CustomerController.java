@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.itheima.crm.pojo.UserTableExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -51,8 +52,18 @@ public class CustomerController {
 		HashMap<Object, Object> map = new HashMap<>();
 		UserTable selectByPrimaryKey = userLoginService.selectByPrimaryKey(1);
 		map.put("sis",selectByPrimaryKey);
-        System.out.println(99999999);
-        System.out.println(77);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        UserTableExample userTableExample = new UserTableExample();
+        userTableExample.createCriteria().andIdIsNotNull();
+        int i = userLoginService.countByExample(userTableExample);
+//        System.out.println(i);
+
+        List<UserTable> userTables = userLoginService.selectByExample(userTableExample);
+        for(UserTable key : userTables){
+            System.out.println(key.getId());
+        }
+
+        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         return map;
 	};
 	@RequestMapping(value = "error_404")
