@@ -9,6 +9,11 @@
 <script src="https://cdn.bootcss.com/jquery/2.1.0-rc1/jquery.min.js"></script>
 <%--<h3>45555</h3>--%>
 <%--<h5>dddd</h5>--%>
+
+<form action="/update" method="post" enctype="multipart/form-data">
+    选择文件:<input type="file" name="file">
+    <input type="submit" value="提交">
+</form>
 </body>
 <script>
 	$.ajax({
@@ -27,7 +32,7 @@
 	$.ajax({
 		url:"/login",
 		 type: 'post',
-	   
+
 	    success:function(data){
 	       console.log(data);
 	    }
