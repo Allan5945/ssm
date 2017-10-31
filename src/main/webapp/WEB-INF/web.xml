@@ -9,8 +9,8 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
-  
+
+
   	<!-- 配置spring -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -56,7 +56,7 @@
 	</servlet-mapping>
   	<error-page>
         <error-code>404</error-code>
-        <location>/error_404</location>
+        <location>/</location>
     </error-page>
   
 </web-app>

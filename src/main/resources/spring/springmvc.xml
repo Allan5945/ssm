@@ -6,18 +6,18 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
-	<!-- 配置Controller扫描 -->
-	<context:component-scan base-package="com.itheima.crm.controller" />
+
+    <!-- 自动注册组件 -->
+   <mvc:annotation-driven/>
+
+    <!-- 配置Controller扫描 -->
+	<context:component-scan base-package="com.ssm.controller" />
 	
-		<context:property-placeholder location="classpath:resource.properties" />
-	
-	<!-- 配置注解驱动 -->
-	<mvc:annotation-driven />
-	
-	<!-- 对静态资源放行  -->
-	<mvc:resources location="/css/" mapping="/css/**"/>
-	<mvc:resources location="/js/" mapping="/js/**"/>
-	<mvc:resources location="/fonts/" mapping="/fonts/**"/>
+    <context:property-placeholder location="classpath:resource.properties" />
+
+    <!--&lt;!&ndash; 开启静态资源支持 &ndash;&gt;-->
+    <!--<mvc:default-servlet-handler />-->
+
 	<!-- 配置视图解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- 前缀 -->
@@ -25,6 +25,22 @@
 		<!-- 后缀 -->
 		<property name="suffix" value=".jsp" />
 	</bean>
+
+    <!--静态资源-->
+    <mvc:resources location="/static/" mapping="/static/**"/>
+
+
+    <!-- 定义拦截器配置  -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- path:代表需要拦截的地址 -->
+            <mvc:mapping path="/**"/>
+            <!-- 管理的自定义的拦截器类 -->
+            <bean class="com.ssm.interceptor.Interceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!--文件上传-->
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding" value="UTF-8"></property>

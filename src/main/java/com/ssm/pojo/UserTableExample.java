@@ -1,4 +1,4 @@
-package com.itheima.crm.pojo;
+package com.ssm.pojo;
 
 import java.util.ArrayList;
 import java.util.List;

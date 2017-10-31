@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.itheima.crm.mapper.UserTableMapper" >
-  <resultMap id="BaseResultMap" type="com.itheima.crm.pojo.UserTable" >
+<mapper namespace="com.ssm.mapper.UserTableMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.pojo.UserTable" >
     <id column="ID" property="id" jdbcType="INTEGER" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="pas" property="pas" jdbcType="VARCHAR" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List" >
     ID, user_name, pas
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itheima.crm.pojo.UserTableExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ssm.pojo.UserTableExample" >
     select
     <if test="distinct" >
       distinct
@@ -91,19 +91,19 @@
     delete from user_table
     where ID = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.itheima.crm.pojo.UserTableExample" >
+  <delete id="deleteByExample" parameterType="com.ssm.pojo.UserTableExample" >
     delete from user_table
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.itheima.crm.pojo.UserTable" >
+  <insert id="insert" parameterType="com.ssm.pojo.UserTable" >
     insert into user_table (ID, user_name, pas
       )
     values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{pas,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.itheima.crm.pojo.UserTable" >
+  <insert id="insertSelective" parameterType="com.ssm.pojo.UserTable" >
     insert into user_table
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -128,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.itheima.crm.pojo.UserTableExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.ssm.pojo.UserTableExample" resultType="java.lang.Integer" >
     select count(*) from user_table
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -160,7 +160,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.itheima.crm.pojo.UserTable" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.pojo.UserTable" >
     update user_table
     <set >
       <if test="userName != null" >
@@ -172,7 +172,7 @@
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.itheima.crm.pojo.UserTable" >
+  <update id="updateByPrimaryKey" parameterType="com.ssm.pojo.UserTable" >
     update user_table
     set user_name = #{userName,jdbcType=VARCHAR},
       pas = #{pas,jdbcType=VARCHAR}

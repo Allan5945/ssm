@@ -1,11 +1,11 @@
-package com.itheima.crm.service;
+package com.ssm.service;
 
-import com.itheima.crm.pojo.UserTableExample;
+import com.ssm.pojo.UserTableExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.itheima.crm.mapper.UserTableMapper;
-import com.itheima.crm.pojo.UserTable;
+import com.ssm.mapper.UserTableMapper;
+import com.ssm.pojo.UserTable;
 
 import java.util.List;
 

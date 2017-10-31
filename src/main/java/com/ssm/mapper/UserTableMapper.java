@@ -1,7 +1,7 @@
-package com.itheima.crm.mapper;
+package com.ssm.mapper;
 
-import com.itheima.crm.pojo.UserTable;
-import com.itheima.crm.pojo.UserTableExample;
+import com.ssm.pojo.UserTable;
+import com.ssm.pojo.UserTableExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

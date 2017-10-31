@@ -1,7 +1,7 @@
-package com.itheima.crm.service;
+package com.ssm.service;
 
-import com.itheima.crm.pojo.UserTable;
-import com.itheima.crm.pojo.UserTableExample;
+import com.ssm.pojo.UserTable;
+import com.ssm.pojo.UserTableExample;
 
 import java.util.List;
 

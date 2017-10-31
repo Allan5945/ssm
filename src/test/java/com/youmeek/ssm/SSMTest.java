@@ -1,7 +1,7 @@
 package com.youmeek.ssm;
 
-import com.itheima.crm.service.UserLoginService;
-import com.itheima.crm.pojo.UserTable;
+import com.ssm.service.UserLoginService;
+import com.ssm.pojo.UserTable;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

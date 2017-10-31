@@ -1,4 +1,4 @@
-package com.itheima.crm.pojo;
+package com.ssm.pojo;
 
 public class UserTable {
     private Integer id;
