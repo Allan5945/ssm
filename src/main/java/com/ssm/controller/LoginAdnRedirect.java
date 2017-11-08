@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,11 +19,24 @@ import java.util.Map;
 
 @Controller
 public class LoginAdnRedirect {
+
+    /**
+     * get请求未找到从定向到主页
+     * */
+    @RequestMapping(value = "err",method = RequestMethod.GET)
+    public static void index(HttpServletRequest request,HttpServletResponse response){
+        try {
+            response.sendRedirect("/");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    };
+
     /**
      * 重定向到主页
      * */
-    @RequestMapping(value = "",method = RequestMethod.GET)
-    public String index(){
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public String reindex(){
         return "index";
     };
 
@@ -47,4 +63,6 @@ public class LoginAdnRedirect {
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         return map;
     };
+
+
 }

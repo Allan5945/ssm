@@ -178,4 +178,7 @@
       pas = #{pas,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
+    <select id="justTest" resultType="com.ssm.pojo.UserTable">
+        SELECT * from user_table
+    </select>
 </mapper>

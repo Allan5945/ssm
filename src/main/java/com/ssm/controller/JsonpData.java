@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
@@ -14,9 +15,12 @@ public class JsonpData {
      * */
     @RequestMapping(value = "authCode")
     @ResponseBody
-    public String getMobileAuthCode(HttpServletRequest request, String callback)
+    public String getMobileAuthCode(HttpServletRequest request, HttpServletResponse response, String callback)
             throws Exception {
-        String result =  "{'ret':'true'}";
+        System.out.println(callback);
+
+
+        String result =  "";
         //加上返回参数
         result=callback+"("+result+")";
         return result;
