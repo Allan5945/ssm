@@ -1,5 +1,6 @@
 package com.youmeek.ssm;
 
+import com.ssm.mapper.UsersesMapper;
 import com.ssm.service.UserLoginService;
 import com.ssm.pojo.UserTable;
 import org.junit.Test;
@@ -14,17 +15,14 @@ import java.util.HashMap;
 @ContextConfiguration(locations = {"classpath*:spring/applicationContext*.xml"})
 public class SSMTest {
 
-
 	@Resource
     private UserLoginService userLoginService;
+    private UsersesMapper usersesMapper;
 
 	@Test
 	public void test1() {
-        HashMap<Object, Object> map = new HashMap<>();
-        UserTable selectByPrimaryKey = userLoginService.selectByPrimaryKey(1);
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        map.put("sis",selectByPrimaryKey);
-        System.out.println(map);
-        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+//        System.out.println(usersesMapper.selectList());
     }
+
+
 }

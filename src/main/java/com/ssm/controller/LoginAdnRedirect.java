@@ -1,7 +1,9 @@
 package com.ssm.controller;
 
+import com.ssm.mapper.UsersesMapper;
 import com.ssm.pojo.UserTable;
 import com.ssm.pojo.UserTableExample;
+import com.ssm.pojo.Userses;
 import com.ssm.service.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,8 +25,12 @@ public class LoginAdnRedirect {
     /**
      * get请求未找到从定向到主页
      * */
+    @Autowired
+    private UsersesMapper usersesMapper;
     @RequestMapping(value = "err",method = RequestMethod.GET)
     public static void index(HttpServletRequest request,HttpServletResponse response){
+
+
         try {
             response.sendRedirect("/");
         } catch (IOException e) {
@@ -37,6 +43,15 @@ public class LoginAdnRedirect {
      * */
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String reindex(){
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+        List<Userses> list = usersesMapper.selectList();
+        System.out.println(list);
+        for(Userses attribute : list) {
+            System.out.println(attribute.getUserName());
+            System.out.println(attribute.getId());
+            System.out.println(attribute.getPwd());
+        }
         return "index";
     };
 
