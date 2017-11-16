@@ -24,11 +24,11 @@ public class Interceptor implements HandlerInterceptor{
 	//主要判断登录等等
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object arg2, ModelAndView arg3)
 			throws Exception {
-        System.out.println("方法前 1");
+//        System.out.println("方法前 1");
     }
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object arg2, Exception arg3)
 			throws Exception {
-		System.out.println("页面渲染后 1");
+//		System.out.println("页面渲染后 1");
 		
 	}
 }

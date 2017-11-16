@@ -26,10 +26,8 @@ public class LoginAdnRedirect {
      * get请求未找到从定向到主页
      * */
     @Autowired
-    private UsersesMapper usersesMapper;
     @RequestMapping(value = "err",method = RequestMethod.GET)
     public static void index(HttpServletRequest request,HttpServletResponse response){
-
 
         try {
             response.sendRedirect("/");
@@ -44,14 +42,6 @@ public class LoginAdnRedirect {
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String reindex(){
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-
-        List<Userses> list = usersesMapper.selectList();
-        System.out.println(list);
-        for(Userses attribute : list) {
-            System.out.println(attribute.getUserName());
-            System.out.println(attribute.getId());
-            System.out.println(attribute.getPwd());
-        }
         return "index";
     };
 
@@ -59,25 +49,13 @@ public class LoginAdnRedirect {
      * 登录
      * */
     @Autowired
-    private UserLoginService userLoginService;
-    @RequestMapping(value = "login",method = RequestMethod.POST)
+    private UsersesMapper usersesMapper;
+    @RequestMapping(value = "login")
     @ResponseBody
     public Map login(){
         HashMap<Object, Object> map = new HashMap<>();
-        UserTable selectByPrimaryKey = userLoginService.selectByPrimaryKey(1);
-        map.put("sis",selectByPrimaryKey);
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        UserTableExample userTableExample = new UserTableExample();
-        userTableExample.createCriteria().andIdIsNotNull();
-        int i = userLoginService.countByExample(userTableExample);
-
-        List<UserTable> userTables = userLoginService.selectByExample(userTableExample);
-        for(UserTable key : userTables){
-//            System.out.println(key.getId());
-        }
-        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        List<Userses> list = usersesMapper.selectList();
+        map.put("mes",list);
         return map;
     };
-
-
 }
