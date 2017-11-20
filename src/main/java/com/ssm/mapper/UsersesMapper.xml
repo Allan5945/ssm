@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ssm.mapper.UsersesMapper" >
-    <select id="selectList" resultType="com.ssm.pojo.Userses">
-        SELECT * from userses
+    <select id="selectList" resultType="com.ssm.pojo.Userses" parameterType="com.ssm.pojo.Userses">
+        SELECT * from userses WHERE userName = #{userName,jdbcType=VARCHAR} AND pwd = #{pwd,jdbcType=VARCHAR}
     </select>
 </mapper>

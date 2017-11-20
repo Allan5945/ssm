@@ -52,9 +52,14 @@ public class LoginAdnRedirect {
     private UsersesMapper usersesMapper;
     @RequestMapping(value = "login")
     @ResponseBody
-    public Map login(){
+    public Map login(HttpServletRequest request){
+        String userName=request.getParameter("userName");
+        String pwd=request.getParameter("pwd");
         HashMap<Object, Object> map = new HashMap<>();
-        List<Userses> list = usersesMapper.selectList();
+        Userses userses = new Userses();
+        userses.setPwd(pwd);
+        userses.setUserName(userName);
+        List<Userses> list = usersesMapper.selectList(userses);
         map.put("mes",list);
         return map;
     };

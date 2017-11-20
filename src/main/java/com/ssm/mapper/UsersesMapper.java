@@ -5,5 +5,5 @@ import com.ssm.pojo.Userses;
 import java.util.List;
 
 public interface UsersesMapper {
-        List<Userses> selectList();
+        List<Userses> selectList(Userses userses);
 }

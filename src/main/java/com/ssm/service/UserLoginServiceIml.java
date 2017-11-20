@@ -33,7 +33,7 @@ public class UserLoginServiceIml implements UserLoginService {
     }
 
     @Override
-    public List<Userses> selectList() {
-        return usersesMapper.selectList();
+    public List<Userses> selectList(Userses userses) {
+        return usersesMapper.selectList(userses);
     }
 }

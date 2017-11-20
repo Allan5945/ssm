@@ -11,5 +11,5 @@ public interface UserLoginService {
     int countByExample(UserTableExample example);
     List<UserTable> selectByExample(UserTableExample example);
 
-    List<Userses> selectList();
+    List<Userses> selectList(Userses userses);
 }
