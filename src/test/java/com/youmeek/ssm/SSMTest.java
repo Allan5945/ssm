@@ -2,14 +2,12 @@ package com.youmeek.ssm;
 
 import com.ssm.mapper.UsersesMapper;
 import com.ssm.service.UserLoginService;
-import com.ssm.pojo.UserTable;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:spring/applicationContext*.xml"})
