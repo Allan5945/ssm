@@ -47,7 +47,7 @@ public class LoginAdnRedirect {
      * */
     @Autowired
     private UsersesMapper usersesMapper;
-    @RequestMapping(value = "/obtain/login")
+    @RequestMapping(value = "/login")
     @ResponseBody
     public Map login(HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -72,12 +72,12 @@ public class LoginAdnRedirect {
      * */
     @Autowired
     private RecordMapper recordMapper;
-    @RequestMapping(value = "/obtain/record")
+    @RequestMapping(value = "/record")
     @ResponseBody
     public Map record(HttpServletRequest request){
         HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
         final List<Record> records = recordMapper.selectList(0);
-        objectObjectHashMap.put("name",records);
+        objectObjectHashMap.put("mes",records);
         return objectObjectHashMap;
     };
 }
