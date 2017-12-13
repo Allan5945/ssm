@@ -20,7 +20,7 @@
 
         <!--2016-02-20切换到spring3试试-->
         <!--mybatis官网：http://blog.mybatis.org/2016/02/mybatis-331-and-mybatis-spring-124.html,在2016-02-13发布了3.3.1版本-->
-        <spring.version>3.2.16.RELEASE</spring.version>
+        <spring.version>4.0.2.RELEASE</spring.version>
         <mybatis.version>3.3.1</mybatis.version>
         <mybatis-spring.version>1.2.4</mybatis-spring.version>
 
@@ -95,6 +95,32 @@
 
     <!--架包依赖 start-->
     <dependencies>
+        <!--scoket包-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>4.0.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-messaging</artifactId>
+            <version>4.0.1.RELEASE</version>
+        </dependency>
 
         <!-- ############################################################### Spring 相关包 start ############################################################### -->
         <!--spring 源码包下载地址：https://github.com/spring-projects/spring-framework/releases-->

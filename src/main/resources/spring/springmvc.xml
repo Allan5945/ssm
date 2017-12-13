@@ -12,7 +12,7 @@
 
     <!-- 配置Controller扫描 -->
 	<context:component-scan base-package="com.ssm.controller" />
-	
+
     <context:property-placeholder location="classpath:resource.properties" />
 
     <!--&lt;!&ndash; 开启静态资源支持 &ndash;&gt;-->
@@ -47,5 +47,6 @@
         <property name="defaultEncoding" value="UTF-8"></property>
         <property name="maxUploadSize" value="5400000"></property>
     </bean>
+    <bean name="monitor" class="com.ssm.wocket.Monitor" lazy-init="false"    init-method="sendMsg"></bean>
 </beans>
 	
