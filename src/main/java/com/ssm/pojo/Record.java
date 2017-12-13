@@ -5,7 +5,16 @@ public class Record {
     private String sdata;
     private String edata;
     private int zk;
+    private int columId;
     private String bz;
+
+    public int getColumId() {
+        return columId;
+    }
+
+    public void setColumId(int columId) {
+        this.columId = columId;
+    }
 
     public int getId() {
         return id;

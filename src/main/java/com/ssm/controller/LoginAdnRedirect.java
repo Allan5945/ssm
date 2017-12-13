@@ -66,8 +66,8 @@ public class LoginAdnRedirect {
             map.put("mes",false);
         }
         return map;
-    };  /**
-
+    };
+    /**
      * 获取数据
      * */
     @Autowired
@@ -75,9 +75,40 @@ public class LoginAdnRedirect {
     @RequestMapping(value = "/record")
     @ResponseBody
     public Map record(HttpServletRequest request){
+        HttpSession session = request.getSession();
         HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
-        final List<Record> records = recordMapper.selectList(0);
+        final List<Record> records = recordMapper.selectList((Integer) session.getAttribute("userName"));
         objectObjectHashMap.put("mes",records);
+        return objectObjectHashMap;
+    };
+
+    /*
+    * 插入数据
+    * **/
+
+    @RequestMapping(value = "/insert")
+    @ResponseBody
+    public Map insert(HttpServletRequest request){
+        final Record record = new Record();
+        record.setId(1);
+        recordMapper.insertList(record);
+        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+        return objectObjectHashMap;
+    };
+
+    /*
+    * 修改数据
+    * **/
+
+    @RequestMapping(value = "/update")
+    @ResponseBody
+    public Map update(HttpServletRequest request){
+        final Record record = new Record();
+        record.setId(1);
+        record.setBz("7");
+        record.setZk(6);
+        recordMapper.updateList(record);
+        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
         return objectObjectHashMap;
     };
 }

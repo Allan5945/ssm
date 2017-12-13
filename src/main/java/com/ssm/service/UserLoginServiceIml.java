@@ -26,4 +26,14 @@ public class UserLoginServiceIml implements UserLoginService {
     public List<Record> selectList(int id) {
         return recordMapper.selectList(id);
     }
+
+    @Override
+    public int insertList(Record record) {
+        return recordMapper.insertList(record);
+    }
+
+    @Override
+    public int updateList(Record r) {
+        return recordMapper.updateList(r);
+    }
 }

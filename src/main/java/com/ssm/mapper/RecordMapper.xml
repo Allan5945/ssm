@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ssm.mapper.RecordMapper" >
+<mapper namespace="com.ssm.mapper.RecordMapper">
+    <sql id="sid">
+         id,sdata,edata,zk,columId,bz
+    </sql>
     <select id="selectList" resultType="com.ssm.pojo.Record" parameterType="INTEGER">
-        SELECT * from record WHERE id = #{id}
+        SELECT
+        <include refid="sid" />
+        from record WHERE id = #{id}
     </select>
+    <insert id="insertList" parameterType="com.ssm.pojo.Record">
+        INSERT INTO record (id) VALUES (#{id})
+    </insert>
+    <update id="updateList" parameterType="com.ssm.pojo.Record">
+        update record set bz=#{bz},zk=#{zk} where id=#{id}
+    </update>
+
 </mapper>
