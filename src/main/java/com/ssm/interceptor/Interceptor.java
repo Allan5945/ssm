@@ -11,22 +11,19 @@ public class Interceptor implements HandlerInterceptor{
 
     //  适合做限制/黑名单/等等
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
-//        String requestURI = request.getRequestURI();
-//        if(!requestURI.contains("/login")){
-//            String username = (String) request.getSession().getAttribute("USER_SESSION");
-//            if(null == username){
-//                response.sendRedirect(request.getContextPath() + "/login");
-//                return false;
-//            }
-//        }
-        return true;
-//        HttpSession session = request.getSession();
-//        if(session.getAttribute("userName") != null){
-//            return true;
-//        }else{
-//            response.sendRedirect(request.getContextPath() + "/login");
-//                return false;
-//        }
+	    String user_mes = (String) request.getAttribute("user_mes");
+        String requestURI = request.getRequestURI();
+
+        if(requestURI.contains("/login")){
+            return true;
+        };
+	    if(request.getAttribute("user_mes") != null){
+            return  true;
+        }else{
+            System.out.println(request.getContextPath());
+//            response.sendRedirect(request.getContextPath() + "/");
+        };
+        return false;
 	};
 	//主要判断登录等等
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object arg2, ModelAndView arg3)
@@ -36,6 +33,6 @@ public class Interceptor implements HandlerInterceptor{
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object arg2, Exception arg3)
 			throws Exception {
 //		System.out.println("页面渲染后 1");
-		
+
 	}
 }

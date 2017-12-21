@@ -7,5 +7,4 @@
 	<typeAliases>
 		<package name="com.ssm.pojo"/>
 	</typeAliases>
-
 </configuration>
