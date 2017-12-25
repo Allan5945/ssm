@@ -14,16 +14,12 @@ public class Interceptor implements HandlerInterceptor{
 	    String user_mes = (String) request.getAttribute("user_mes");
         String requestURI = request.getRequestURI();
 
-        if(requestURI.contains("/login")){
+        if(requestURI.contains("/login") || requestURI.contains("/index") || request.getAttribute("user_mes") != null){
             return true;
-        };
-	    if(request.getAttribute("user_mes") != null){
-            return  true;
         }else{
-            System.out.println(request.getContextPath());
-//            response.sendRedirect(request.getContextPath() + "/");
-        };
-        return false;
+            response.sendRedirect("/index");
+            return false;
+        }
 	};
 	//主要判断登录等等
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object arg2, ModelAndView arg3)

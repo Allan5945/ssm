@@ -37,7 +37,7 @@ public class LoginAdnRedirect {
     /**
      * 重定向到主页
      * */
-    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String reindex(){
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         return "index";
