@@ -20,11 +20,13 @@ import java.util.Map;
 
 @Controller
 public class LoginAdnRedirect {
+    @Autowired
+    private UsersesMapper usersesMapper;
+    private RecordMapper recordMapper;
 
     /**
      * get请求未找到从定向到主页
      * */
-    @Autowired
     @RequestMapping(value = "err",method = RequestMethod.GET)
     public static void index(HttpServletRequest request,HttpServletResponse response){
 //        try {
@@ -39,76 +41,42 @@ public class LoginAdnRedirect {
      * */
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String reindex(){
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         return "index";
     };
     /**
      * 登录
      * */
-    @Autowired
-    private UsersesMapper usersesMapper;
+
     @RequestMapping(value = "/login")
     @ResponseBody
     public Map login(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        String userName=request.getParameter("userName");
-        String pwd=request.getParameter("pwd");
-        HashMap<Object, Object> map = new HashMap<>();
+        String userName = request.getParameter("userName");
+        String pwd = request.getParameter("pwd");
         Userses userses = new Userses();
-        userses.setPwd(pwd);
+        HttpSession session = request.getSession();
         userses.setUserName(userName);
-        List<Userses> list = usersesMapper.selectList(userses);
-        if(list.size() != 0){
-            map.put("mes",true);
-            int n = list.get(0).getId();
-            session.setAttribute("userName",n);
+        userses.setPwd(pwd);
+        List<Userses> userList = usersesMapper.selectList(userses);
+        HashMap<String , Map> map = new HashMap<>();
+        HashMap<String, Object> objectObjectHashMap = new HashMap<>();
+        if(userList.size() != 0){
+            session.setAttribute("userMes",userList);
+            objectObjectHashMap.put("type",true);
+            objectObjectHashMap.put("data",userList);
         }else{
-            map.put("mes",false);
+            objectObjectHashMap.put("type",false);
         }
+        map.put("mes",objectObjectHashMap);
         return map;
     };
-    /**
-     * 获取数据
-     * */
-    @Autowired
-    private RecordMapper recordMapper;
-    @RequestMapping(value = "/record")
+
+    @RequestMapping(value = "/isLogin")
     @ResponseBody
-    public Map record(HttpServletRequest request){
+    public Boolean isLogin(HttpServletRequest request,HttpServletResponse response){
         HttpSession session = request.getSession();
-        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
-        final List<Record> records = recordMapper.selectList((Integer) session.getAttribute("userName"));
-        objectObjectHashMap.put("mes",records);
-        return objectObjectHashMap;
-    };
+        List<Userses> userList = (List<Userses>)session.getAttribute("userMes");
+        System.out.println(userList);
+        return true;
+    }
 
-    /*
-    * 插入数据
-    * **/
-
-    @RequestMapping(value = "/insert")
-    @ResponseBody
-    public Map insert(HttpServletRequest request){
-        final Record record = new Record();
-        record.setId(1);
-        recordMapper.insertList(record);
-        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
-        return objectObjectHashMap;
-    };
-
-    /*
-    * 修改数据
-    * **/
-
-    @RequestMapping(value = "/update")
-    @ResponseBody
-    public Map update(HttpServletRequest request){
-        final Record record = new Record();
-        record.setId(1);
-        record.setBz("7");
-        record.setZk(6);
-        recordMapper.updateList(record);
-        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
-        return objectObjectHashMap;
-    };
 }
