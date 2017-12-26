@@ -17,7 +17,7 @@ public class Interceptor implements HandlerInterceptor{
 
         HttpSession session = request.getSession();
 
-        List<Userses> userMes = (List<Userses>)session.getAttribute("userMes");
+        Userses userMes = (Userses)session.getAttribute("userMes");
 
         if(requestURI.contains("/login") || requestURI.contains("/index") || userMes != null){
             return true;

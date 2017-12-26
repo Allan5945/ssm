@@ -21,17 +21,22 @@ USE `betterman`;
 DROP TABLE IF EXISTS `record`;
 
 CREATE TABLE `record` (
+  `columId` int(10) NOT NULL AUTO_INCREMENT,
   `id` int(10) DEFAULT NULL,
   `sdata` varchar(10) DEFAULT NULL,
   `edata` varchar(10) DEFAULT NULL,
   `zk` int(10) DEFAULT NULL,
-  `bz` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `bz` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`columId`),
+  KEY `columId` (`columId`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 /*Data for the table `record` */
 
-insert  into `record`(`id`,`sdata`,`edata`,`zk`,`bz`) values 
-(0,'2017.10.23','2017.10.2',10,'学习英语');
+insert  into `record`(`columId`,`id`,`sdata`,`edata`,`zk`,`bz`) values 
+(2,1,'2017.10.23','2017.10.23',6,'7'),
+(10,1,'2017.1.1','2018.2.1',7,'6'),
+(11,1,'2017.1.1','2018.2.1',7,'6');
 
 /*Table structure for table `userses` */
 

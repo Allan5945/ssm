@@ -60,7 +60,7 @@ public class LoginAdnRedirect {
         HashMap<String , Map> map = new HashMap<>();
         HashMap<String, Object> objectObjectHashMap = new HashMap<>();
         if(userList.size() != 0){
-            session.setAttribute("userMes",userList);
+            session.setAttribute("userMes",userList.get(0));
             objectObjectHashMap.put("type",true);
             objectObjectHashMap.put("data",userList);
         }else{
@@ -69,14 +69,4 @@ public class LoginAdnRedirect {
         map.put("mes",objectObjectHashMap);
         return map;
     };
-
-    @RequestMapping(value = "/isLogin")
-    @ResponseBody
-    public Boolean isLogin(HttpServletRequest request,HttpServletResponse response){
-        HttpSession session = request.getSession();
-        List<Userses> userList = (List<Userses>)session.getAttribute("userMes");
-        System.out.println(userList);
-        return true;
-    }
-
 }
