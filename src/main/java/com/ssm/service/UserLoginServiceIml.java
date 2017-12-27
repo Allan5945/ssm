@@ -28,12 +28,17 @@ public class UserLoginServiceIml implements UserLoginService {
     }
 
     @Override
-    public int insertList(Record record) {
+    public Boolean insertList(Record record) {
         return recordMapper.insertList(record);
     }
 
     @Override
-    public int updateList(Record r) {
+    public Boolean updateList(Record r) {
         return recordMapper.updateList(r);
+    }
+
+    @Override
+    public Boolean deleteItem(int r) {
+        return recordMapper.deleteItem(r);
     }
 }

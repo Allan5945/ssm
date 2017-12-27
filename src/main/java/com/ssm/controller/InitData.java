@@ -36,17 +36,24 @@ public class InitData {
     // 插入数据
     @RequestMapping(value = "/addItemData",method = RequestMethod.POST)
     @ResponseBody
-    public HashMap<String, String> addItemData(Record record,HttpServletRequest request,HttpServletResponse response){
-        HashMap<String, String> objectObjectHashMap = new HashMap<String, String>();
+    public Boolean addItemData(Record record,HttpServletRequest request,HttpServletResponse response){
         record.setZk(Integer.parseInt(request.getParameter("zk")));
         record.setEdata(request.getParameter("edata"));
         record.setSdata(request.getParameter("sdata"));
         record.setBz(request.getParameter("bz"));
         Userses userses = (Userses)request.getSession().getAttribute("userMes");
         record.setId(userses.getId());
-
-        recordMapper.insertList(record);
-
-        return objectObjectHashMap;
+        Boolean i = recordMapper.insertList(record);
+        return i;
     };
+
+     // 删除数据
+    @RequestMapping(value = "/deleteItemData",method = RequestMethod.POST)
+    @ResponseBody
+    public Boolean deleteItemData(HttpServletResponse response,HttpServletRequest request){
+        int num = Integer.parseInt(request.getParameter("columId"));
+        System.out.println(num);
+        Boolean aBoolean = recordMapper.deleteItem(num);
+        return  aBoolean;
+    }
 }

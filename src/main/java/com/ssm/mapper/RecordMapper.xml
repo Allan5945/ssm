@@ -18,5 +18,8 @@
     <update id="updateList" parameterType="com.ssm.pojo.Record">
         update record set bz=#{bz},zk=#{zk} where id=#{id}
     </update>
+    <delete id="deleteItem" parameterType="INTEGER">
+      DELETE FROM record WHERE  columId = #{columId}
+    </delete>
 
 </mapper>

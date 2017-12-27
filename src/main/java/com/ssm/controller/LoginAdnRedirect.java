@@ -49,7 +49,10 @@ public class LoginAdnRedirect {
 
     @RequestMapping(value = "/login")
     @ResponseBody
-    public Map login(HttpServletRequest request){
+    public Map login(HttpServletRequest request,HttpServletResponse response){
+        // 跨域头部代码
+        response.setHeader("Access-Control-Allow-Origin","*");
+
         String userName = request.getParameter("userName");
         String pwd = request.getParameter("pwd");
         Userses userses = new Userses();

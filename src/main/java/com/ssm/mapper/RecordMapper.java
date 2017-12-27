@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface RecordMapper {
     List<Record> selectList(int id);
-    int insertList(Record record);
-    int updateList(Record r);
+    Boolean insertList(Record record);
+    Boolean updateList(Record r);
+    Boolean deleteItem(int r);
 }
