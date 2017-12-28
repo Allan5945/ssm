@@ -12,6 +12,7 @@
     <button onclick="deleteItemData()">删除数据</button>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
 <script>
+
     function login() {
         $.ajax({
             url:"/login",
