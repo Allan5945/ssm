@@ -3,6 +3,8 @@ package com.ssm.wocket;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 
@@ -17,6 +19,8 @@ public class WebSocketTest {
     private static int onlineCount = 0;
     //concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。若要实现服务端与单一客户端通信的话，可以使用Map来存放，其中Key可以为用户标识
     public static CopyOnWriteArraySet<WebSocketTest> webSocketSet = new CopyOnWriteArraySet<WebSocketTest>();
+    //
+    public static HashMap<String,WebSocketTest> scoketMap = new HashMap<String,WebSocketTest>();
 
     //与某个客户端的连接会话，需要通过它来给客户端发送数据
     private Session session;
@@ -30,8 +34,8 @@ public class WebSocketTest {
     public void onOpen(Session session) {
         this.session = session;
         webSocketSet.add(this);     //加入set中
-        addOnlineCount();           //在线数加1
-        System.out.println("有新连接加入！当前在线人数为" + getOnlineCount());
+        scoketMap.put(this.session.getQueryString(),this);
+        System.out.println("打开连接");
     }
 
     /**
@@ -39,8 +43,8 @@ public class WebSocketTest {
      */
     @OnClose
     public void onClose() {
-//        webSocketSet.remove(this);  //从set中删除
-//        subOnlineCount();           //在线数减1
+        webSocketSet.remove(this);  //从set中删除
+        subOnlineCount();           //在线数减1
         System.out.println("有一连接关闭！当前在线人数为" + getOnlineCount());
     }
 
@@ -73,7 +77,7 @@ public class WebSocketTest {
     @OnError
     public void onError(Session session, Throwable error) {
         System.out.println("发生错误");
-        error.printStackTrace();
+//        error.printStackTrace();
     }
 
     /**
@@ -84,7 +88,6 @@ public class WebSocketTest {
      */
     public void sendMessage(String message) throws IOException {
         this.session.getBasicRemote().sendText(message);
-
     }
 
     public static synchronized int getOnlineCount() {
@@ -99,8 +102,12 @@ public class WebSocketTest {
         WebSocketTest.onlineCount--;
     }
 
+    private void onMessage(String sasa) {
 
-    public void sendMsg(String msg) {
+    }
+
+    // 群发消息（推送消息）
+    public void sendAllMsg(String msg) {
         for (WebSocketTest item : webSocketSet) {
             try {
                 item.sendMessage(msg);
@@ -111,5 +118,10 @@ public class WebSocketTest {
         }
     }
 
-
+    // 给某个人单独通讯
+    public void sendIOneMsg(String name,String msg) throws IOException {
+//        Set<String> getKey = scoketMap.keySet();
+        WebSocketTest item = scoketMap.get(name);
+        if(item != null)item.sendMessage(msg);
+    }
 }
