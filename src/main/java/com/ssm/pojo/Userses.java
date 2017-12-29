@@ -4,6 +4,7 @@ public class Userses {
     private int id;
     private String userName;
     private String pwd;
+    private String associated;
 
     public int getId() {
         return id;
@@ -27,5 +28,13 @@ public class Userses {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    public String getAssociated() {
+        return associated;
+    }
+
+    public void setAssociated(String associated) {
+        this.associated = associated;
     }
 }

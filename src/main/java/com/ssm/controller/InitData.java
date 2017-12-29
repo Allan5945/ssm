@@ -1,9 +1,11 @@
 package com.ssm.controller;
 
 import com.ssm.mapper.RecordMapper;
+import com.ssm.mapper.UsersesMapper;
 import com.ssm.pojo.Record;
 import com.ssm.pojo.Userses;
 import com.ssm.service.UserLoginService;
+import com.ssm.wocket.WebSocketTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +38,33 @@ public class InitData {
         return stringListHashMap;
     };
 
-    // 插入数据
+
+
+    // 开始打卡
+    @RequestMapping(value = "/clockInStart",method = RequestMethod.POST)
+    @ResponseBody
+    public Boolean clockInStart(Record record,HttpServletRequest request,HttpServletResponse response) throws IOException {
+        // 获取传入数据
+        // 获取session信息
+        Userses userMes = (Userses)request.getSession().getAttribute("userMes");
+        // 获取当前时间
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+
+        record.setBz((String) request.getAttribute("bz"));
+        record.setId(userMes.getId());
+        record.setSdata(date.format(new Date()));
+
+        Boolean aBoolean = recordMapper.insertList(record);
+        if(aBoolean){
+            // 插入成功发提示消息
+            WebSocketTest webSocketTest = new WebSocketTest();
+            webSocketTest.sendIOneMsg(userMes.getAssociated(),"你好啊我是"+Integer.toString(userMes.getId()));
+        }
+        return aBoolean;
+    };
+
+   // 结束打卡插入数据
     @RequestMapping(value = "/addItemData",method = RequestMethod.POST)
     @ResponseBody
     public Boolean addItemData(Record record,HttpServletRequest request,HttpServletResponse response){

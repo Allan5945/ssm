@@ -7,12 +7,13 @@
     <title>app</title>
 <body>
     <button onclick="login('528386631')">登录528386631</button>
-    <button onclick="login('352563349')">登录352563349</button>
-    <button onclick="init()">获取数据</button>
-    <button onclick="addItemData()">插入数据</button>
-    <button onclick="deleteItemData()">删除数据</button>
-    <button onclick="webscoket()">连接ws</button>
-    <button onclick="sendWebscoket()">发送消息</button>
+    <button onclick="login('352563349')">登录352563349</button></br>
+    <button onclick="init()">获取数据</button></br>
+    <button onclick="clockInStart()">开始打卡</button>
+    <button onclick="addItemData()">结束打卡</button></br>
+    <button onclick="deleteItemData()">删除数据</button></br>
+    <button onclick="webscoket()">连接ws</button></br>
+    <button onclick="sendWebscoket()">发送消息</button></br>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
 <script>
     var ws;
@@ -71,7 +72,7 @@
         })
     };
     function webscoket() {
-        ws = new WebSocket('ws://localhost:80/websocket?' + userId);
+        ws = new WebSocket('ws://localhost:8000/websocket?' + userId);
         ws.onopen = function (event) {
             console.log("打开连接");
         };
@@ -102,21 +103,19 @@
             }
         })
     }
-    // 跨域代码
-//    $.ajax({
-//        url:"http://127.0.0.1:8099/login",
-//        type:"post",
-//        data:{
-//            userName:"528386631",
-//            pwd:"0"
-//        },
-//        headers: {
-//            Origin: "*"
-//        },
-//        success:function (data) {
-//            console.log(data)
-//        }
-//    })
+
+    function clockInStart() {
+        $.ajax({
+            url:"/clockInStart",
+            type:"post",
+            data:{
+                bz:"准备学习一哈哈"
+            },
+            success:function (data) {
+                console.log(data)
+            }
+        })
+    }
 </script>
 </body>
 </html>

@@ -22,7 +22,6 @@ public class Chat {
         Userses userMes = (Userses)request.getSession().getAttribute("userMes");
         String name = Integer.toString(userMes.getId());
         WebSocketTest webSocketTest = new WebSocketTest();
-
         webSocketTest.sendIOneMsg(df,"你好啊我是"+name);
         return true;
     }

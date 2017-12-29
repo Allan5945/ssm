@@ -7,6 +7,7 @@ public class Record {
     private int zk;
     private int columId;
     private String bz;
+    private String state;
 
     public int getColumId() {
         return columId;
@@ -54,5 +55,12 @@ public class Record {
 
     public void setBz(String bz) {
         this.bz = bz;
+    }
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }
