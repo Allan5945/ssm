@@ -41,4 +41,9 @@ public class UserLoginServiceIml implements UserLoginService {
     public Boolean deleteItem(int r) {
         return recordMapper.deleteItem(r);
     }
+
+    @Override
+    public List<Record> unfinished(int r) {
+        return recordMapper.unfinished(r);
+    }
 }

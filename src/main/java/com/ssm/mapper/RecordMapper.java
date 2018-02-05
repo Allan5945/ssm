@@ -10,4 +10,5 @@ public interface RecordMapper {
     Boolean insertList(Record record);
     Boolean updateList(Record r);
     Boolean deleteItem(int r);
+    List<Record> unfinished(int r);
 }

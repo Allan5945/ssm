@@ -43,25 +43,34 @@ public class InitData {
     // 开始打卡
     @RequestMapping(value = "/clockInStart",method = RequestMethod.POST)
     @ResponseBody
-    public Boolean clockInStart(Record record,HttpServletRequest request,HttpServletResponse response) throws IOException {
+    public Map clockInStart(Record record,HttpServletRequest request,HttpServletResponse response) throws IOException {
+        Map<String, Object> objectObjectHashMap = new HashMap<>();
+
+
         // 获取传入数据
         // 获取session信息
-        Userses userMes = (Userses)request.getSession().getAttribute("userMes");
+        Userses session = (Userses)request.getSession().getAttribute("userMes");
+        final List<Record> unfinished = recordMapper.unfinished(session.getId());
+        if(unfinished.size() != 0){
+            objectObjectHashMap.put("type",false);
+            objectObjectHashMap.put("mes","开始打卡失败！，请完成上一次的打卡");
+            return  objectObjectHashMap;
+        };
+
         // 获取当前时间
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-
         record.setBz((String) request.getAttribute("bz"));
-        record.setId(userMes.getId());
+        record.setId(session.getId());
         record.setSdata(date.format(new Date()));
-
         Boolean aBoolean = recordMapper.insertList(record);
         if(aBoolean){
             // 插入成功发提示消息
             WebSocketTest webSocketTest = new WebSocketTest();
-            webSocketTest.sendIOneMsg(userMes.getAssociated(),"你好啊我是"+Integer.toString(userMes.getId()));
+            webSocketTest.sendIOneMsg(session.getAssociated(),"你好啊我是"+Integer.toString(session.getId()));
         }
-        return aBoolean;
+        objectObjectHashMap.put("type",true);
+        objectObjectHashMap.put("mes","打卡成功！");
+        return objectObjectHashMap;
     };
 
    // 结束打卡插入数据

@@ -22,6 +22,7 @@ import java.util.Map;
 public class LoginAdnRedirect {
     @Autowired
     private UsersesMapper usersesMapper;
+    @Autowired
     private RecordMapper recordMapper;
 
     /**
@@ -63,9 +64,16 @@ public class LoginAdnRedirect {
         HashMap<String , Map> map = new HashMap<>();
         HashMap<String, Object> objectObjectHashMap = new HashMap<>();
         if(userList.size() != 0){
+            final List<Record> unfinished = recordMapper.unfinished(userList.get(0).getId());
             session.setAttribute("userMes",userList.get(0));
+            boolean unfinishedType = false;
+            if(unfinished.size() != 0){
+                unfinishedType = true;
+            };
             objectObjectHashMap.put("type",true);
             objectObjectHashMap.put("data",userList);
+            objectObjectHashMap.put("unfinishedType",unfinishedType);
+            objectObjectHashMap.put("unfinishedData",unfinished.get(0));
         }else{
             objectObjectHashMap.put("type",false);
         }
