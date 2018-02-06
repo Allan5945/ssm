@@ -22,7 +22,7 @@ public class Interceptor implements HandlerInterceptor{
         if(requestURI.contains("/login") || requestURI.contains("/index") || userMes != null){
             return true;
         }else{
-            response.sendRedirect("/index");
+            response.sendRedirect("/loginPage");
             return false;
         }
 	};

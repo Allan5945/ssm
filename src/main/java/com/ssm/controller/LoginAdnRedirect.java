@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,10 +51,9 @@ public class LoginAdnRedirect {
 
     @RequestMapping(value = "/login")
     @ResponseBody
-    public Map login(HttpServletRequest request,HttpServletResponse response){
+    public Map login(HttpServletRequest request,HttpServletResponse response) throws IOException {
         // 跨域头部代码
-        response.setHeader("Access-Control-Allow-Origin","*");
-
+//        response.setHeader("Access-Control-Allow-Origin","*");
         String userName = request.getParameter("userName");
         String pwd = request.getParameter("pwd");
         Userses userses = new Userses();
@@ -64,20 +64,23 @@ public class LoginAdnRedirect {
         HashMap<String , Map> map = new HashMap<>();
         HashMap<String, Object> objectObjectHashMap = new HashMap<>();
         if(userList.size() != 0){
-            final List<Record> unfinished = recordMapper.unfinished(userList.get(0).getId());
             session.setAttribute("userMes",userList.get(0));
-            boolean unfinishedType = false;
-            if(unfinished.size() != 0){
-                unfinishedType = true;
-            };
-            objectObjectHashMap.put("type",true);
-            objectObjectHashMap.put("data",userList);
-            objectObjectHashMap.put("unfinishedType",unfinishedType);
-            objectObjectHashMap.put("unfinishedData",unfinished.get(0));
+            response.sendRedirect("index");
+
         }else{
             objectObjectHashMap.put("type",false);
         }
         map.put("mes",objectObjectHashMap);
         return map;
     };
+
+    @RequestMapping(value = "/loginPage",method = RequestMethod.GET)
+    public String loginPage(){
+        return "login";
+    }
+
+    @RequestMapping(value = "/progress",method = RequestMethod.GET)
+    public String initProgress(){
+        return "progress";
+    }
 }

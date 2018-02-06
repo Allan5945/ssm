@@ -27,6 +27,25 @@ public class InitData {
     @Autowired
     private RecordMapper recordMapper;
 
+
+    // 加载登录进来的所有数据
+    @RequestMapping(value = "initDatas",method = RequestMethod.POST)
+    @ResponseBody
+    public Map initDatas(HttpServletRequest request){
+        final HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+        Userses userMes = (Userses) request.getSession().getAttribute("userMes");
+        final List<Record> unfinished = recordMapper.unfinished(userMes.getId());
+        boolean unfinishedType = false;
+        if(unfinished.size() != 0){
+            unfinishedType = true;
+        };
+        objectObjectHashMap.put("type",true);
+        objectObjectHashMap.put("data",userMes);
+        objectObjectHashMap.put("unfinishedType",unfinishedType);
+        return objectObjectHashMap;
+    }
+
+
     // 初次加载获取全部数据的接口
     @RequestMapping(value = "/initData",method = RequestMethod.POST)
     @ResponseBody
@@ -38,6 +57,17 @@ public class InitData {
         return stringListHashMap;
     };
 
+    // 获取进度数据
+    @RequestMapping(value = "/initProgress",method = RequestMethod.POST)
+    @ResponseBody
+    public Map initProgress(HttpServletRequest request,HttpServletResponse response){
+        final Map<String, Object> objectObjectHashMap = new HashMap<>();
+        Userses userMes = (Userses) request.getSession().getAttribute("userMes");
+        final List<Record> unfinished = recordMapper.unfinished(userMes.getId());
+        objectObjectHashMap.put("type",true);
+        objectObjectHashMap.put("unfinishedData",unfinished.get(0));
+        return objectObjectHashMap;
+    };
 
 
     // 开始打卡
