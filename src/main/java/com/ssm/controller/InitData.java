@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -64,8 +65,12 @@ public class InitData {
         final Map<String, Object> objectObjectHashMap = new HashMap<>();
         Userses userMes = (Userses) request.getSession().getAttribute("userMes");
         final List<Record> unfinished = recordMapper.unfinished(userMes.getId());
-        objectObjectHashMap.put("type",true);
-        objectObjectHashMap.put("unfinishedData",unfinished.get(0));
+        if(unfinished.size() != 0){
+            objectObjectHashMap.put("type",true);
+            objectObjectHashMap.put("unfinishedData",unfinished.get(0));
+        }else{
+            objectObjectHashMap.put("type",false);
+        }
         return objectObjectHashMap;
     };
 
@@ -88,7 +93,7 @@ public class InitData {
         };
 
         // 获取当前时间
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         record.setBz((String) request.getAttribute("bz"));
         record.setId(session.getId());
         record.setSdata(date.format(new Date()));
@@ -106,14 +111,26 @@ public class InitData {
    // 结束打卡插入数据
     @RequestMapping(value = "/addItemData",method = RequestMethod.POST)
     @ResponseBody
-    public Boolean addItemData(Record record,HttpServletRequest request,HttpServletResponse response){
-        record.setZk(Integer.parseInt(request.getParameter("zk")));
-        record.setEdata(request.getParameter("edata"));
-        record.setSdata(request.getParameter("sdata"));
-        record.setBz(request.getParameter("bz"));
-        Userses userses = (Userses)request.getSession().getAttribute("userMes");
-        record.setId(userses.getId());
-        Boolean i = recordMapper.insertList(record);
+    public Boolean addItemData(Record record,HttpServletRequest request){
+        Userses userMes = (Userses) request.getSession().getAttribute("userMes");
+        final Record unfinished = recordMapper.unfinished(userMes.getId()).get(0);
+        String edata = request.getParameter("edata");
+        SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        if(edata != null){
+            try {
+                Date date = simpleFormat.parse(edata);
+                String toDate = simpleFormat.format(date.getTime());
+                String fromDate  = unfinished.getSdata();
+                long from = simpleFormat.parse(fromDate).getTime();
+                long to = simpleFormat.parse(toDate).getTime();
+                int minutes = (int) ((to - from)/(1000 * 60));
+                unfinished.setEdata(toDate);
+                unfinished.setState(minutes);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        Boolean i = recordMapper.endInsertList(unfinished);
         return i;
     };
 

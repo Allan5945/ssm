@@ -9,6 +9,7 @@ public interface UserLoginService {
     List<Userses> selectList(Userses userses);
     List<Record> selectList(int id);
     Boolean insertList(Record record);
+    Boolean endInsertList(Record record);
     Boolean updateList(Record r);
     Boolean deleteItem(int r);
     List<Record> unfinished(int r);

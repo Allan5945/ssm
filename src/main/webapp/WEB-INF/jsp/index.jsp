@@ -19,9 +19,6 @@
         $.ajax({
             url:"/initData",
             type:"post",
-            headers: {
-                Origin: "application/json; charset=utf-8"
-            },
             success:function (data) {
                 console.log(data)
             }

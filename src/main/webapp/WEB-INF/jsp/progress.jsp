@@ -12,10 +12,10 @@
 </head>
 <body>
 <div id="propress-table">
-    <div id="propress-err">
+    <div id="propress-err"></div>
+    <div id="propress-input">
 
     </div>
-
 </div>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
 <script src="static/js/progress.js"></script>

@@ -33,6 +33,11 @@ public class UserLoginServiceIml implements UserLoginService {
     }
 
     @Override
+    public Boolean endInsertList(Record record) {
+        return recordMapper.endInsertList(record);
+    }
+
+    @Override
     public Boolean updateList(Record r) {
         return recordMapper.updateList(r);
     }

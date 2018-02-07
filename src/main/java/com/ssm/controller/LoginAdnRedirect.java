@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +42,7 @@ public class LoginAdnRedirect {
     /**
      * 重定向到主页
      * */
-    @RequestMapping(value = "/index",method = RequestMethod.GET)
+    @RequestMapping(value = {"/index","/"},method = RequestMethod.GET)
     public String reindex(){
         return "index";
     };
@@ -75,8 +76,13 @@ public class LoginAdnRedirect {
     };
 
     @RequestMapping(value = "/loginPage",method = RequestMethod.GET)
-    public String loginPage(){
-        return "login";
+    public String loginPage(HttpServletRequest request){
+        final HttpSession session = request.getSession();
+        if(session.getAttribute("userMes") != null){
+            return "index";
+        }else{
+            return "login";
+        }
     }
 
     @RequestMapping(value = "/progress",method = RequestMethod.GET)

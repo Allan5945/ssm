@@ -8,6 +8,7 @@ import java.util.List;
 public interface RecordMapper {
     List<Record> selectList(int id);
     Boolean insertList(Record record);
+    Boolean endInsertList(Record record);
     Boolean updateList(Record r);
     Boolean deleteItem(int r);
     List<Record> unfinished(int r);
