@@ -66,8 +66,7 @@ public class LoginAdnRedirect {
         HashMap<String, Object> objectObjectHashMap = new HashMap<>();
         if(userList.size() != 0){
             session.setAttribute("userMes",userList.get(0));
-            response.sendRedirect("index");
-
+            objectObjectHashMap.put("type",true);
         }else{
             objectObjectHashMap.put("type",false);
         }

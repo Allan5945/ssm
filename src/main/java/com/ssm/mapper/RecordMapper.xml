@@ -21,7 +21,7 @@
         INSERT INTO record (<include refid="insertId" />) VALUES (#{id},#{sdata},#{edata},#{zk},#{bz})
     </insert>
     <update id="endInsertList" parameterType="com.ssm.pojo.Record">
-      UPDATE record SET edata=#{edata},state=#{state} WHERE id=#{id}
+      UPDATE record SET edata=#{edata},state=#{state} WHERE columId=#{columId}
     </update>
     <update id="updateList" parameterType="com.ssm.pojo.Record">
         update record set bz=#{bz},zk=#{zk} where id=#{id}

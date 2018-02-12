@@ -8,6 +8,7 @@ import com.ssm.service.UserLoginService;
 import com.ssm.wocket.WebSocketTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.registry.infomodel.User;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -80,8 +82,6 @@ public class InitData {
     @ResponseBody
     public Map clockInStart(Record record,HttpServletRequest request,HttpServletResponse response) throws IOException {
         Map<String, Object> objectObjectHashMap = new HashMap<>();
-
-
         // 获取传入数据
         // 获取session信息
         Userses session = (Userses)request.getSession().getAttribute("userMes");
@@ -91,12 +91,13 @@ public class InitData {
             objectObjectHashMap.put("mes","开始打卡失败！，请完成上一次的打卡");
             return  objectObjectHashMap;
         };
-
         // 获取当前时间
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-        record.setBz((String) request.getAttribute("bz"));
+        String bz = request.getParameter("bz");
+        record.setBz(bz);
         record.setId(session.getId());
-        record.setSdata(date.format(new Date()));
+        String format = date.format(new Date());
+        record.setSdata(format);
         Boolean aBoolean = recordMapper.insertList(record);
         if(aBoolean){
             // 插入成功发提示消息
@@ -105,6 +106,11 @@ public class InitData {
         }
         objectObjectHashMap.put("type",true);
         objectObjectHashMap.put("mes","打卡成功！");
+
+        Map<String, String> objectObjectHashMap1 = new HashMap<>();
+        objectObjectHashMap1.put("time",format);
+        objectObjectHashMap1.put("bz",bz);
+        objectObjectHashMap.put("data",objectObjectHashMap1);
         return objectObjectHashMap;
     };
 
@@ -112,10 +118,12 @@ public class InitData {
     @RequestMapping(value = "/addItemData",method = RequestMethod.POST)
     @ResponseBody
     public Boolean addItemData(Record record,HttpServletRequest request){
+        SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         Userses userMes = (Userses) request.getSession().getAttribute("userMes");
         final Record unfinished = recordMapper.unfinished(userMes.getId()).get(0);
         String edata = request.getParameter("edata");
-        SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        edata = (edata == null ? simpleFormat.format(new Date()) : edata);
+
         if(edata != null){
             try {
                 Date date = simpleFormat.parse(edata);
@@ -143,4 +151,7 @@ public class InitData {
         Boolean aBoolean = recordMapper.deleteItem(num);
         return  aBoolean;
     }
+
+    // 解密微信小程序id
+
 }

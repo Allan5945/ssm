@@ -13,15 +13,28 @@
 <body>
 <div>
     <h2>登录</h2>
-    <form action="/login" method="post">
-        账号：<input type="text" name="userName">
-        密码：<input type="password" name="pwd">
-        <input type="submit" value="登录">
-    </form>
+    账号：<input type="text" id="userName">
+    密码：<input type="password" id="pwd">
+    <input type="submit" value="登录" onclick="login()">
 </div>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
 <script>
-
+    function login() {
+        let data ={
+            userName:$("#userName").val(),
+            pwd:$("#pwd").val(),
+        };
+        $.ajax({
+            url:"/login",
+            type:"post",
+            data,
+            success(data){
+                if(data.mes.type){
+                    window.location.href = "/index"
+                }
+            }
+        })
+    }
 </script>
 </body>
 </html>
