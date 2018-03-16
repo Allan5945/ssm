@@ -57,6 +57,8 @@ public class LoginAdnRedirect {
 //        response.setHeader("Access-Control-Allow-Origin","*");
         String userName = request.getParameter("userName");
         String pwd = request.getParameter("pwd");
+        String openId = request.getParameter("openId");
+
         Userses userses = new Userses();
         HttpSession session = request.getSession();
         userses.setUserName(userName);

@@ -72,7 +72,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:jsp-api:2.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax:javaee-api:7.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.sun.mail:javax.mail:1.5.0" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.11" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.1.7" level="project" />
@@ -83,5 +83,55 @@
     <orderEntry type="library" name="Maven: commons-fileupload:commons-fileupload:1.3.1" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.3.2" level="project" />
+    <orderEntry type="library" name="Maven: bouncycastle:bouncycastle-jce-jdk13:112" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.xfire:xfire-all:1.2.6" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.xfire:xfire-aegis:1.2.6" level="project" />
+    <orderEntry type="library" name="Maven: net.java.dev.stax-utils:stax-utils:20040917" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.xfire:xfire-ws-security:1.2.6" level="project" />
+    <orderEntry type="library" name="Maven: jmock:jmock:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: xfire:opensaml:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: bouncycastle:bcprov-jdk15:133" level="project" />
+    <orderEntry type="library" name="Maven: xerces:xercesImpl:2.7.1" level="project" />
+    <orderEntry type="library" name="Maven: xml-apis:xml-apis:1.0.b2" level="project" />
+    <orderEntry type="library" name="Maven: xml-security:xmlsec:1.3.0" level="project" />
+    <orderEntry type="library" name="Maven: wss4j:wss4j:1.5.1" level="project" />
+    <orderEntry type="library" name="Maven: commons-discovery:commons-discovery:0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.xfire:xfire-core:1.2.6" level="project" />
+    <orderEntry type="library" name="Maven: javax.mail:mail:1.4" level="project" />
+    <orderEntry type="library" name="Maven: wsdl4j:wsdl4j:1.6.1" level="project" />
+    <orderEntry type="library" name="Maven: jaxen:jaxen:1.1-beta-9" level="project" />
+    <orderEntry type="library" name="Maven: xerces:xmlParserAPIs:2.6.2" level="project" />
+    <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.ws.commons:XmlSchema:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.woodstox:wstx-asl:3.2.0" level="project" />
+    <orderEntry type="library" name="Maven: jdom:jdom:1.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-httpclient:commons-httpclient:3.0" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.xfire:xfire-java5:1.2.6" level="project" />
+    <orderEntry type="library" name="Maven: xfire:xfire-jsr181-api:1.0-M1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.xfire:xfire-generator:1.2.6" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.xfire:xfire-jaxb2:1.2.6" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-xjc:2.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-impl:2.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.xfire:xfire-xmlbeans:1.2.6" level="project" />
+    <orderEntry type="library" name="Maven: xmlbeans:xbean:2.2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.xfire:xfire-annotations:1.2.6" level="project" />
+    <orderEntry type="library" name="Maven: commons-attributes:commons-attributes-api:2.1" level="project" />
+    <orderEntry type="library" name="Maven: ant:ant:1.5" level="project" />
+    <orderEntry type="library" name="Maven: qdox:qdox:1.5" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.xfire:xfire-jaxws:1.2.6" level="project" />
+    <orderEntry type="library" name="Maven: javax.xml.ws:jaxws-api:2.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.xml.bind:jsr173_api:1.0" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.xml.messaging.saaj:saaj-impl:1.3" level="project" />
+    <orderEntry type="library" name="Maven: javax.xml.soap:saaj-api:1.3" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.xfire:xfire-spring:1.2.6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.xbean:xbean-spring:2.8" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring:1.2.6" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.json-lib:json-lib:jdk15:2.4" level="project" />
+    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
+    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.5" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" level="project" />
   </component>
 </module>
