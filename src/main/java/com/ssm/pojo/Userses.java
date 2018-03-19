@@ -5,6 +5,7 @@ public class Userses {
     private String userName;
     private String pwd;
     private String associated;
+    private String unionid;
 
     public int getId() {
         return id;
@@ -36,5 +37,12 @@ public class Userses {
 
     public void setAssociated(String associated) {
         this.associated = associated;
+    }
+    public String getUnionid() {
+        return unionid;
+    }
+
+    public void setUnionid(String unionid) {
+        this.unionid = unionid;
     }
 }

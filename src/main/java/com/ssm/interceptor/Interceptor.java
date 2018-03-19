@@ -19,7 +19,7 @@ public class Interceptor implements HandlerInterceptor{
 
         Userses userMes = (Userses)session.getAttribute("userMes");
 
-        if(requestURI.contains("/login") || requestURI.contains("/index") || userMes != null){
+        if(requestURI.contains("/login") || requestURI.contains("/wxLogin") || requestURI.contains("/index") || userMes != null){
             return true;
         }else{
             response.sendRedirect("/loginPage");

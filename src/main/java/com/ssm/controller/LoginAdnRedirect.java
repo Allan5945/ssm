@@ -57,18 +57,20 @@ public class LoginAdnRedirect {
 //        response.setHeader("Access-Control-Allow-Origin","*");
         String userName = request.getParameter("userName");
         String pwd = request.getParameter("pwd");
-        String openId = request.getParameter("openId");
+        String unionid = request.getParameter("unionid");
 
         Userses userses = new Userses();
         HttpSession session = request.getSession();
         userses.setUserName(userName);
         userses.setPwd(pwd);
+        userses.setUnionid(unionid);
         List<Userses> userList = usersesMapper.selectList(userses);
         HashMap<String , Map> map = new HashMap<>();
         HashMap<String, Object> objectObjectHashMap = new HashMap<>();
         if(userList.size() != 0){
             session.setAttribute("userMes",userList.get(0));
             objectObjectHashMap.put("type",true);
+            objectObjectHashMap.put("sessionId", request.getSession().getId());
         }else{
             objectObjectHashMap.put("type",false);
         }
